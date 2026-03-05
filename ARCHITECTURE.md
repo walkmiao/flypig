@@ -9,31 +9,29 @@
 - 可扩展：内置 `orchestrator` 与 `LeaseStore` 抽象，支持高可用与故障转移策略。
 
 ## 2. 目录与职责
-- `cmd/host-loader`
-  - 宿主示例入口。
-  - 启动插件子进程、建立 go-plugin gRPC 连接、调用 `Start/AssignShard/Health/SendCommand/Stop`。
-- `cmd/iec104-plugin`
-  - 插件进程入口。
-  - 注册 `IEC104Plugin` 实现并通过 `hplugin.Serve` 暴露服务。
-- `contract`
+- `app/data-plane/internal/service/hostloader`
+  - 宿主加载服务，负责拉起插件进程并调用契约接口。
+- `app/data-plane/internal/service/pluginproc`
+  - 插件进程服务，负责通过 `hplugin.Serve` 暴露插件实现。
+- `app/data-plane/internal/service/contract`
   - 跨进程共享的领域契约：`StationConfig`、`ShardAssignment`、`HealthSnapshot`、`CommandRequest/Result`、`Plugin`、`LeaseStore`。
-- `grpcplugin`
+- `app/data-plane/internal/service/grpcplugin`
   - go-plugin 的 gRPC 桥接层。
   - 提供 `Handshake`、插件集注册、gRPC server/client 双端适配。
   - 使用自定义 `jsonCodec` 做序列化。
-- `runtime`
+- `app/data-plane/internal/service/runtime`
   - 插件运行时实现。
   - `IEC104Plugin`：真实 IEC104 客户端连接、ASDU 回调解析、命令发送、健康统计。
   - `MockPlugin`：用于测试/演示的简化实现。
-- `orchestrator`
+- `app/data-plane/internal/service/orchestrator`
   - 分片调度逻辑（与插件进程解耦）。
   - `FailoverLostOwners`：故障接管。
   - `Rebalance`：负载重平衡。
 
 ## 3. 进程与边界
 ### 3.1 进程模型
-- 宿主进程：`cmd/host-loader`
-- 插件进程：`cmd/iec104-plugin`
+- 宿主进程：`app/data-plane` 子命令 `host-loader`
+- 插件进程：`app/data-plane` 子命令 `plugin`
 - 站点端：IEC104 设备/站点（TCP）
 
 ### 3.2 通信链路
@@ -105,13 +103,13 @@
   - `waitStationReady` 每 50ms 轮询 `stationRuntime.ready`。
 
 ## 7. 协议桥接实现要点
-- `grpcplugin/plugin.go`
+- `app/data-plane/internal/service/grpcplugin/plugin.go`
   - `IEC104GRPCPlugin` 同时实现 `GRPCServer` 与 `GRPCClient`。
   - server 侧将 gRPC 调用转发到 `contract.Plugin` 实现。
   - client 侧通过 `cc.Invoke` 代理远程方法。
-- `grpcplugin/service.go`
+- `app/data-plane/internal/service/grpcplugin/service.go`
   - 手工注册 `grpc.ServiceDesc` 和方法 handler，避免依赖 `.proto` 生成代码。
-- `grpcplugin/codec.go`
+- `app/data-plane/internal/service/grpcplugin/codec.go`
   - 注册 JSON 编解码器，并通过 `grpc.ForceCodec(jsonCodec{})` 指定。
 
 ## 8. 编排层（orchestrator）设计

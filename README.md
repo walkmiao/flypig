@@ -7,20 +7,22 @@
 
 ## 目录
 
-- `contract/`: 插件契约定义（分片、健康、命令）
-- `grpcplugin/`: go-plugin 的 gRPC 桥接层
-- `runtime/`: 插件实现（`IEC104Plugin`，含真实 IEC104 收发）与 `MockPlugin`
-- `cmd/iec104-plugin`: 插件进程入口
-- `cmd/host-loader`: 宿主加载器入口
+- `app/control-plane/`: GoFrame 控制面入口骨架
+- `app/data-plane/internal/service/contract/`: 插件契约定义（分片、健康、命令）
+- `app/data-plane/internal/service/grpcplugin/`: go-plugin 的 gRPC 桥接层
+- `app/data-plane/internal/service/runtime/`: 插件实现（`IEC104Plugin`，含真实 IEC104 收发）与 `MockPlugin`
+- `app/data-plane/internal/service/pluginproc/`: 插件进程启动服务
+- `app/data-plane/internal/service/hostloader/`: 宿主加载服务
 
 ## 快速运行
 
-先进入模板子模块目录：
+在当前项目目录执行：
 
 ```bash
-cd examples/plugin-ha-template
-go build -o /tmp/iec104-plugin ./cmd/iec104-plugin
-go run ./cmd/host-loader /tmp/iec104-plugin
+go build -o /tmp/data-plane ./app/data-plane
+/tmp/data-plane plugin
+# 新开一个终端再执行：
+/tmp/data-plane host-loader /tmp/data-plane
 ```
 
 期望输出包含：
