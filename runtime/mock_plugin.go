@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/wendy512/iec104/examples/plugin-ha-template/contract"
+	"github.com/walkmiao/flypig/contract"
 )
 
 type MockPlugin struct {

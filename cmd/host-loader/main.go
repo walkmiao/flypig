@@ -12,8 +12,8 @@ import (
 	"time"
 
 	hplugin "github.com/hashicorp/go-plugin"
-	"github.com/wendy512/iec104/examples/plugin-ha-template/contract"
-	"github.com/wendy512/iec104/examples/plugin-ha-template/grpcplugin"
+	"github.com/walkmiao/flypig/contract"
+	"github.com/walkmiao/flypig/grpcplugin"
 )
 
 func main() {

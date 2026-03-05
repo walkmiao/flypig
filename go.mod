@@ -1,15 +1,13 @@
-module github.com/wendy512/iec104/examples/plugin-ha-template
+module github.com/walkmiao/flypig
 
 go 1.24.0
 
 require (
 	github.com/hashicorp/go-plugin v1.6.3
 	github.com/wendy512/go-iecp5 v1.2.5
-	github.com/wendy512/iec104 v0.0.0
+	github.com/wendy512/iec104 v1.0.4
 	google.golang.org/grpc v1.58.3
 )
-
-replace github.com/wendy512/iec104 => ../../
 
 require (
 	github.com/fatih/color v1.7.0 // indirect

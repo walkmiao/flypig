@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/wendy512/iec104/examples/plugin-ha-template/contract"
+	"github.com/walkmiao/flypig/contract"
 )
 
 // Orchestrator manages shard failover and balancing for plugin instances.

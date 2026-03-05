@@ -3,7 +3,7 @@ package grpcplugin
 import (
 	"context"
 
-	"github.com/wendy512/iec104/examples/plugin-ha-template/contract"
+	"github.com/walkmiao/flypig/contract"
 	"google.golang.org/grpc"
 )
 

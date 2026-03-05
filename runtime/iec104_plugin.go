@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/walkmiao/flypig/contract"
 	"github.com/wendy512/go-iecp5/asdu"
 	iecc "github.com/wendy512/iec104/client"
-	"github.com/wendy512/iec104/examples/plugin-ha-template/contract"
 )
 
 type IEC104Plugin struct {

@@ -43,6 +43,8 @@ github.com/stretchr/testify v1.8.3 h1:RP3t2pwF7cMEbC1dqtB6poj3niw/9gnV4Cjg5oW5gt
 github.com/stretchr/testify v1.8.3/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/wendy512/go-iecp5 v1.2.5 h1:jQqIVOV6nHy+YD0Llj6jQN5a9NZEx704ouoVuARfMvI=
 github.com/wendy512/go-iecp5 v1.2.5/go.mod h1:d5koVsFZF0IV2JYznykSLJy6d29mHvXlNqm6GvvJQ0k=
+github.com/wendy512/iec104 v1.0.4 h1:GpZDrI9bUy8cUCOPUVLQZYxJ7gHDqzEHapePSj9mYb8=
+github.com/wendy512/iec104 v1.0.4/go.mod h1:y440d7zVZHIMJiZEk4F/KJQLhXIZWChffglEuGqukPo=
 golang.org/x/net v0.34.0 h1:Mb7Mrk043xzHgnRM88suvJFwzVrRfHEHJEl5/71CKw0=
 golang.org/x/net v0.34.0/go.mod h1:di0qlW3YNM5oh6GqDGQr92MyTozJPmybPK4Ev/Gm31k=
 golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=

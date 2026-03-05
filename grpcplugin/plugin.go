@@ -4,7 +4,7 @@ import (
 	"context"
 
 	hplugin "github.com/hashicorp/go-plugin"
-	"github.com/wendy512/iec104/examples/plugin-ha-template/contract"
+	"github.com/walkmiao/flypig/contract"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
